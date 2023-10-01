@@ -1,0 +1,72 @@
+game test: str;
+save xd: dict<num>;
+
+const send = codeblock "SendMessage" <"PLAYER ACTION">;
+const append = codeblock "AppendValue" <"SET VARIABLE">;
+
+
+// const give = codeblock "GiveItems" <"PLAYER ACTION">;
+// const set_block = codeblock "SetBlock" <"GAME ACTION">;
+
+// IDEAS
+// func item_test() {
+    // var some_item: item = item<diamond:64>;
+    // var some_block: block = block<stone>;
+
+    // @all give(some_item);
+    // set_block([2, 3, 4], block);
+// }
+
+func set_msg(out msg: str) {
+    msg = "Result is: ";
+}
+
+func dict_test(out res: dict<num> "Variable to set (dictionary)", some_value: num "Test Value") {
+    res = {
+        "test": some_value,
+        "name a": 20 + 5 * 2 // 30
+    };
+
+    var idx: str = "hello";
+
+    res.funny = 69;
+    res["funny2"] = res.funny + 2;
+    res[idx] = 10000;
+
+    // expected dict:
+    // { "test": some_value, "name a": 30, "funny": 69, "funny2": 71, "hello": 10000 }
+}
+
+func list_test(out res: list<txt>) {
+    res = [
+        `Hello`,
+        `World`
+    ];
+
+    @all send((txt)res);
+    @all send(res[1], res[2]);
+
+    res[2] = `<aqua>%selected`;
+    append(res, "XD");
+    @all send((txt)res);
+}
+
+func main(x: any) {
+    var some_var: num = 20;
+    set_msg(test);
+
+    var result: num;
+
+    result = ((num)test) + 10 * 2; // dirty cast hack to add string and number
+    @all send(`<green>%var(result)</green>`, ` XD`); // 20 expected
+
+    @selection send(`Hello World`);
+
+    var $"%default example": num;
+    $"%default example" = 20;
+
+    dict_test(xd, 2);
+
+    var my_list: list<txt>;
+    list_test(my_list);
+}
