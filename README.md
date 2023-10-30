@@ -5,7 +5,7 @@
 
 ---
 
-As of writing this, DF Compiler (name to be changed) supports the following:
+As of this writing, DF Compiler (name to be changed) supports the following:
 - Functions
 - Variables (line, game, saved, local)
 - Code blocks (with targets)
